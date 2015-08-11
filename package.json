@@ -1,0 +1,10 @@
+{
+  "name": "Angular2-Sandbox",
+  "description": "Sandbox for Angular2 alpha",
+  "author": "Martin Pernica",
+  "dependencies": {
+    "gulp": "3.9.x",
+    "gulp-sourcemaps": "1.5.x",
+    "gulp-typescript": "2.8.x"
+  }
+}

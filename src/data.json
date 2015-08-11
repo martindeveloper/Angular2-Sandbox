@@ -1,0 +1,12 @@
+[
+	{
+		"name": "Peter",
+		"surname": "Parker",
+		"knowAs": "Spiderman"
+	},
+	{
+		"name": "Bruce",
+		"surname": "Wayne",
+		"knowAs": "Batman"
+	}
+]
