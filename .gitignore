@@ -2,7 +2,8 @@ node_modules
 jspm_packages
 npm-debug.log
 .DS_STORE
-public/
+public/**/*
 src/typings/*
 
 !/src/typings/custom/
+!/public/config.js

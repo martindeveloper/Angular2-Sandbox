@@ -6,5 +6,21 @@
     "gulp": "3.9.x",
     "gulp-sourcemaps": "1.5.x",
     "gulp-typescript": "2.8.x"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "public"
+    },
+    "dependencies": {
+      "angular2": "npm:angular2@^2.0.0-alpha.34",
+      "es6-shim": "github:es-shims/es6-shim@^0.32.2",
+      "immutable": "npm:immutable@3.7",
+      "reflect-metadata": "npm:reflect-metadata@^0.1.0",
+      "zone.js": "npm:zone.js@^0.5.1"
+    },
+    "devDependencies": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.91",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.91"
+    }
   }
 }

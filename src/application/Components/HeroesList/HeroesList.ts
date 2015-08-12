@@ -1,5 +1,6 @@
 import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
 import {Http, httpInjectables} from 'angular2/http';
+import * as Immutable from 'immutable';
 
 const API_ENDPOINT = "http://localhost/angular2_sandbox/src/data.json";
 
@@ -14,13 +15,18 @@ const API_ENDPOINT = "http://localhost/angular2_sandbox/src/data.json";
 export class HeroesList
 {
 	public limit = 10;
-	private heroes = [];
+	private heroes : Immutable.Map<number, any>;
   
 	constructor(http: Http)
 	{
 		http.get(API_ENDPOINT)
 	      .toRx()
 	      .map(res => res.json())
-	      .subscribe(heroes => this.heroes = heroes);
+	      .subscribe(heroes => {
+			  let immutableStruct = Immutable.fromJS(heroes);
+			  this.heroes = immutableStruct;
+			  
+			  console.log(this.heroes);
+		  });
 	}
 }
