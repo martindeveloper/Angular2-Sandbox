@@ -1,12 +1,8 @@
-import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
-import {Http, httpInjectables} from 'angular2/http';
-import * as Immutable from 'immutable';
-
-const API_ENDPOINT = "http://localhost/angular2_sandbox/src/data.json";
+import {Component, View, NgFor} from 'angular2/angular2';
+import {HeroesStorage, HeroesImmutableList} from '../Heroes/Services/HeroesStorage'
 
 @Component({
-	selector: "heroes-list",
-  	viewBindings: [httpInjectables]
+	selector: "heroes-list"
 })
 @View({
 	templateUrl: "application/Components/HeroesList/View/List.html",
@@ -15,15 +11,20 @@ const API_ENDPOINT = "http://localhost/angular2_sandbox/src/data.json";
 export class HeroesList
 {
 	public limit = 10;
-	private heroes : Immutable.Map<number, any>;
+	private heroes : HeroesImmutableList;
   
-	constructor(http: Http)
+	constructor(storage: HeroesStorage)
 	{
-		http.get(API_ENDPOINT)
-	      .toRx()
-	      .map(res => res.json())
-	      .subscribe(heroes => {
-			  this.heroes = Immutable.fromJS(heroes);
-		  });
+		// TODO: Move this logic into factory
+		if(storage.isFetched == false)
+		{
+			storage.fetchFromAPI().then((immutableHeroesMap) => {
+				this.heroes = immutableHeroesMap;
+			});
+		}
+		else
+		{
+			this.heroes = storage.heroes;
+		}
 	}
 }
