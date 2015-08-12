@@ -23,10 +23,7 @@ export class HeroesList
 	      .toRx()
 	      .map(res => res.json())
 	      .subscribe(heroes => {
-			  let immutableStruct = Immutable.fromJS(heroes);
-			  this.heroes = immutableStruct;
-			  
-			  console.log(this.heroes);
+			  this.heroes = Immutable.fromJS(heroes);
 		  });
 	}
 }
