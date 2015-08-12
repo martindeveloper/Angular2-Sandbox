@@ -8,6 +8,6 @@ import {bind, Injector, Binding} from 'angular2/di';
 import {httpInjectables} from 'angular2/http';
 
 import {Application} from './Components/Application/Application';
-import {HeroesStorage} from './Components/Heroes/Services/HeroesStorage';
+import {heroesStorageInjectables} from './Components/Heroes/Services/HeroesStorage';
 
-bootstrap(Application, [httpInjectables, HeroesStorage]);
+bootstrap(Application, [httpInjectables, heroesStorageInjectables]);
