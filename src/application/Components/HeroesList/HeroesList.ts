@@ -8,22 +8,18 @@ import {HeroesStorage, HeroesImmutableList} from '../Heroes/Services/HeroesStora
 	templateUrl: "application/Components/HeroesList/View/List.html",
 	directives: [NgFor]
 })
-export class HeroesList
-{
+export class HeroesList {
 	public limit = 10;
-	private heroes : HeroesImmutableList;
-  
-	constructor(storage: HeroesStorage)
-	{
-		// TODO: Move this logic into factory
-		if(storage.isFetched == false)
-		{
+	private heroes: HeroesImmutableList;
+
+	constructor(storage: HeroesStorage) {
+		// TODO: Move this logic into async factory
+		if (storage.isFetched == false) {
 			storage.fetchFromAPI().then((immutableHeroesMap) => {
 				this.heroes = immutableHeroesMap;
 			});
 		}
-		else
-		{
+		else {
 			this.heroes = storage.heroes;
 		}
 	}

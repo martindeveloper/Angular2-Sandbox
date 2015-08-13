@@ -9,39 +9,37 @@ export type HeroesImmutableList = Immutable.Map<number, any>;
 const API_ENDPOINT = "http://localhost/angular2_sandbox/src/data.json";
 
 @Injectable()
-export class HeroesStorage
-{
+export class HeroesStorage {
 	private _heroes = [];
 	public isFetched = false;
 
-	constructor(private httpService: Http)
-	{
+	constructor(private httpService: Http) {
 	}
 
-	get heroes() : HeroesImmutableList
-	{
+	get heroes(): HeroesImmutableList {
 		return Immutable.fromJS(this._heroes);
 	}
 
-	fetchFromAPI() : Promise<HeroesImmutableList>
-	{
+	fetchFromAPI(): Promise<HeroesImmutableList> {
 		return new Promise((resolve) => {
 			this.httpService.get(API_ENDPOINT)
-			      .toRx()
-			      .map(res => res.json())
-			      .subscribe((heroes) => {
-					  this._heroes = heroes;
-					  this.isFetched = true;
+				.toRx()
+				.map(res => res.json())
+				.subscribe((heroes) => {
+					this._heroes = heroes;
+					this.isFetched = true;
 
-					  resolve(this.heroes);
-				   });
+					resolve(this.heroes);
+				});
 		});
 	}
 }
 
 // Injectables
 export const heroesStorageInjectables = [
+	// NOTE: Angular2 deleted toAsyncFactory so we currently need to do that this way
+	// https://github.com/angular/angular/pull/2737
 	bind(HeroesStorage).toFactory((http : Http) => {
 		return new HeroesStorage(http);
 	}, [Http])
-];
+]; 
