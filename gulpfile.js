@@ -16,16 +16,16 @@ gulp.task('compileTypescriptFiles', function(){
   return typescript.js.pipe(sourcemaps.write()).pipe(gulp.dest('public/'));
 });
 
-gulp.task('moveHtmlFiles', function(){
-    var moveHtml = gulp.src('src/**/*.html').pipe(gulp.dest('public/'));
+gulp.task('moveStaticFiles', function(){
+    var moveStatic = gulp.src('src/**/*.{html,json}').pipe(gulp.dest('public/'));
     
-    return moveHtml;
+    return moveStatic;
 });
 
-gulp.task('default', ['compileTypescriptFiles', 'moveHtmlFiles'], function () {
+gulp.task('default', ['compileTypescriptFiles', 'moveStaticFiles'], function () {
 });
 
-gulp.task('watch', ['compileTypescriptFiles', 'moveHtmlFiles'], function() {
+gulp.task('watch', ['compileTypescriptFiles', 'moveStaticFiles'], function() {
     gulp.watch('src/**/*.ts', ['compileTypescriptFiles']);
-    gulp.watch('src/**/*.html', ['moveHtmlFiles']);
+    gulp.watch('src/**/*.html', ['moveStaticFiles']);
 });

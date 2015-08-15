@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/all.d.ts" />
 import {Component, View} from 'angular2/angular2';
 
 import {HeroesList} from '../HeroesList/HeroesList'
